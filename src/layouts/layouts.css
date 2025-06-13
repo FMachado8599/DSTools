@@ -1,0 +1,8 @@
+#app {
+  display: grid;
+  grid-template-areas:
+    navbar navbar
+    aside main;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: auto 1fr;
+}
