@@ -1,1 +1,51 @@
 @import "tailwindcss";
+
+:root{
+    --bg-dark: oklch(0.1 0 20);
+    --bg: oklch(0.15 0 20);
+    --bg-light: oklch(0.2 0 20);
+    --text: oklch(0.96 0 20);
+    --text-muted: oklch(0.76 0 20);
+    --highlight: oklch(0.5 0 20);
+    --border: oklch(0.4 0 20);
+    --border-muted: oklch(0.3 0 20);
+    --primary: oklch(0.8 1 20 )
+}
+
+body{
+    background-color: var(--bg-dark);
+    color: var(--text-muted);
+    padding: 1rem;
+}
+.title{
+    color: var(--primary);
+}
+body.light{
+    --bg-dark: oklch(0.92 0 20);
+    --bg: oklch(0.96 0 20);
+    --bg-light: oklch(1 0 20);
+    --text: oklch(0.15 0 20);
+    --text-muted: oklch(0.4 0 20);
+    --highlight: oklch(1 0 20);
+    --border: oklch(0.6 0 20);
+    --border-muted: oklch(0.7 0 20);
+}
+
+#app {
+  display: grid;
+  grid-template-areas:
+    "navbar navbar"
+    "aside main";
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 1rem;
+  height: 100svh;
+}
+
+.default-format{
+    background-color: var(--bg);
+    border: 1px solid hsl(from var(--border-muted) h s l / 50%);
+    border-top: 1px solid hsl(from var(--border) h s l / 50%);
+    border-radius: .618rem;
+    filter: drop-shadow(0px 5px 6px var(--bg));
+}

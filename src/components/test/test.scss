@@ -1,0 +1,5 @@
+.test-component{
+    & .title{
+        color: var(--primary);
+    }
+}
