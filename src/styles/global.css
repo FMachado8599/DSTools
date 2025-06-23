@@ -16,6 +16,8 @@ body{
     background-color: var(--bg-dark);
     color: var(--text-muted);
     padding: 1rem;
+    width: clamp(1000px, 100vw, 1400px);
+    margin: 1rem auto 1rem auto;
 }
 .title{
     color: var(--primary);
@@ -48,4 +50,5 @@ body.light{
     border-top: 1px solid hsl(from var(--border) h s l / 50%);
     border-radius: .618rem;
     filter: drop-shadow(0px 5px 6px var(--bg));
+    padding: 1rem;
 }
