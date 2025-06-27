@@ -1,0 +1,35 @@
+.color-display{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    height: clamp(18px, 1rem, 2rem);
+    border: 5px solid hsl(from var(--border-muted) h s l / 50%);
+    padding: 2rem;
+    & .color-display-box-container{
+        position: relative;
+        & .color-display-box-overlay,.color-display-box{
+            padding: 4px;
+        }
+        & .color-display-box-overlay{
+            position: absolute;
+            top: 4px;
+            left: 0;
+            z-index: 1;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1px solid white;
+            cursor: pointer;
+        }           
+        & .color-display-box{
+            position: relative;
+            z-index: 2;
+            width: 18px;
+            aspect-ratio: 1/1;
+            height: auto;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+        }
+    }
+}

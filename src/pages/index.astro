@@ -1,13 +1,14 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ReactComponent from '../components/test/test.jsx'
-import Navbar from '../components/navbar/navbar'
-import Aside from '../components/aside/aside'
-import '../styles/global.css'
+import Layout from "../layouts/Layout.astro";
+import ReactComponent from "../components/test/test.jsx";
+import Navbar from "../components/navbar/navbar";
+import Aside from "../components/aside/aside";
+import UITools from "../components/ui-tools/uiTools";
+import "../styles/global.css";
 ---
 
 <Layout>
-	<Navbar />
-	<Aside />
-	<ReactComponent />
+  <Navbar />
+  <Aside />
+  <UITools client:load />
 </Layout>

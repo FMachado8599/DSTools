@@ -1,11 +1,14 @@
-const uiTools = () => {
+import ColorPicker from "./colorPicker/colorPicker.jsx"
+import styles from './uiTools.module.scss'
+
+const UITools = () => {
   return (
-    <div className="main-grid-container">
-      <div>1</div>
+    <div className={`${styles.main_grid_container}`}>
+      <ColorPicker/>
       <div>2</div>
       <div>3</div>
     </div>
   )
 }
 
-export default uiTools
+export default UITools
