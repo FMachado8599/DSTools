@@ -1,0 +1,20 @@
+.colors-container{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    & .add-color-button{
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid red;
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        outline: none;
+        border: 1px solid hsl(from var(--border-muted) h s l / 50%);
+        border-radius: 5rem;
+        cursor: pointer;
+        &:hover{
+            background-color: hsl(from var(--border-muted) h s l / 10%);
+        }
+    }
+}
