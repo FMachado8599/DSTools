@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { generateShades } from "@/utils/colorUtils";
+import { generateShades } from "@/utils/colorConversion";
 import { useColors } from "@/context/ColorsContext";
+import { getTextColorForBackground } from "@/utils/colorContrast";
 
 import styles from "./ShadesGrid.module.scss";
 
 export default function ShadesGrid({ steps = 11 }) {
   const { colors } = useColors();
   const [selectedColorId, setSelectedColorId] = useState(null);
+  const tones = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 
   // Al cargar o si se cambia la lista, seleccionar el primero si hay
   useEffect(() => {
@@ -46,15 +48,24 @@ export default function ShadesGrid({ steps = 11 }) {
 
       {shades.length > 0 && (
         <div className={`${styles["shades-grid"]} rounded px-4 py-2`}>
-          {shades.map((shade, index) => (
-            <div
-              key={index}
-              className={`${styles["shade-block"]} rounded-md h-16 text-xs flex items-center justify-center text-white`}
-              style={{ backgroundColor: shade }}
-            >
-              {shade.toUpperCase()}
-            </div>
-          ))}
+          {shades.map((shade, index) => {
+            const textColor = getTextColorForBackground(shade);
+            return (
+              <div
+                key={index}
+                className={`${styles["shade-block"]} rounded-md h-16 text-xs flex items-center justify-center`}
+                style={{ backgroundColor: shade }}
+              >
+                <p
+                  className={`${styles["shade-tone"]}`}
+                  style={{ backgroundColor: shade, color: textColor }}
+                >
+                  {tones[index]}
+                </p>
+                <p style={{ color: textColor }}>{shade.toUpperCase()}</p>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

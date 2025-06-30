@@ -20,10 +20,14 @@
       position: relative;
       color: white;
       display: flex;
-      align-items: end;
-      justify-content: center;
-      font-size: 0.75rem;
-      padding: 4px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: end;
+      font-size: 0.85rem;
+      padding-bottom: 1rem;
+      & .shade-tone {
+        font-weight: 700;
+      }
     }
   }
 }
