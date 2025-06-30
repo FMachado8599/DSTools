@@ -91,10 +91,10 @@ function ColorPicker({ color: colorProp, id, onDelete, onUpdate }) {
       </div>
       <div className="absolute top-1/2 transform -translate-y-1/2 right-6 mr-0.5 flex gap-3 items-center justify-center">
         <button onClick={copyColorToClipboard} className="cursor-pointer">
-          <CopyIcon className={styles["icon"]} />
+          <CopyIcon className={styles["icon-copy"]} />
         </button>
         <button onClick={() => onDelete(id)} className="cursor-pointer">
-          <DeleteIcon className={styles["icon"]} />
+          <DeleteIcon className={styles["icon-delete"]} />
         </button>
       </div>
     </div>
