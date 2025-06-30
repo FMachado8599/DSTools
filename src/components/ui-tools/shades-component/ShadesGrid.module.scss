@@ -1,0 +1,29 @@
+.shades-grid-container {
+  gap: 8px;
+  margin-top: 1rem;
+  height: auto;
+  max-height: 200px;
+  & .select-color-input {
+    border-radius: 5rem;
+    border: 1px solid var(--border);
+    max-width: 200px;
+  }
+  & .shades-grid {
+    display: grid;
+    grid-template-columns: repeat(11, auto);
+    gap: 0.309rem;
+    height: auto;
+    & .shade-block {
+      height: 100px;
+      width: auto;
+      border-radius: 8px;
+      position: relative;
+      color: white;
+      display: flex;
+      align-items: end;
+      justify-content: center;
+      font-size: 0.75rem;
+      padding: 4px;
+    }
+  }
+}
