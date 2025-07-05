@@ -1,6 +1,8 @@
+import styles from "./aside.module.scss";
+
 const Aside = () => {
   return (
-    <aside className='default-format'>aside</aside>
+    <aside className={`${styles.sidebar} default-format`}>aside</aside>
   )
 }
 

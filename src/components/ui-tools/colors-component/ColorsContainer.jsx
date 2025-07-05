@@ -3,11 +3,13 @@ import ColorPicker from "./colorPicker/ColorPicker";
 
 import styles from "./colorsContainer.module.scss";
 
-const ColorsContainer = () => {
+const ColorsContainer = ({ className = "", style}) => {
   const { colors, addColor, deleteColor, updateColor } = useColors();
 
   return (
-    <div className={`${styles["colors-container"]}`}>
+    <div       
+    className={`${styles["colors-container"]} ${className}`}
+    style={style}>
       <div className="flex flex-wrap flex-column gap-2">
         {colors.map((color) => (
           <ColorPicker
