@@ -9,10 +9,7 @@ export const useLayoutManager = () => {
   const [renderedComponents, setRenderedComponents] = useState(["colors", "shades", "qr"]);
   const [showAddModal, setShowAddModal] = useState(false);
 
-    console.log("Hook ejecutado");
-
     useEffect(() => {
-    console.log("entró al useEffect")
     const savedLayouts = localStorage.getItem(STORAGE_KEYS.DASHBOARD_LAYOUT);
     if (savedLayouts) {
         try {
@@ -24,7 +21,6 @@ export const useLayoutManager = () => {
     } else {
         setLayouts(defaultLayouts);
     }
-      console.log("Se cargó el layout");
     setHasLoadedLayout(true); // ✅ ¡esto tiene que estar afuera del if!
     }, []);
 

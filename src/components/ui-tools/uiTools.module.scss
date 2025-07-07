@@ -9,4 +9,24 @@
     padding: 1rem;
     height: auto;
   }
+  & .remove_button{
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      z-index: 10;
+      & .icon-remove{
+          width: 16px;
+          height: 16px;
+          background-color: oklch(60% 0.2 25);
+          fill: oklch(100% 0 270);
+          transition: all 0.1s ease-in;
+          margin: 3px;
+      }
+  }
 }

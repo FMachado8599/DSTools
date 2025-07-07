@@ -1,9 +1,48 @@
-nav{
+.nav{
     grid-area: navbar;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem;
     gap: 1rem;
+    & .logo{
+        color: white;
+        height: 24px;
+        width: 24px;
+        fill: var(--primary);
+    }
+    & .user_actions{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        & button{
+            cursor: pointer;
+            padding: 5px;
+            border-radius: .5rem;
+            background-color: transparent;
+            &:hover{
+                transition: all 0.2s ease-in;
+                background-color: var(--bg-light-2);
+                & .button_icon{
+                    fill: var(--text);
+                }
+            }
+            & .button_icon{
+                color: white;
+                fill: var(--text-muted);
+            }
+            & .theme_icon{
+                height: 20px;
+                width: 20px;
+            }
+            & .notifications_icon{
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
 }

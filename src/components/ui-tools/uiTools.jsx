@@ -1,6 +1,7 @@
 import { ColorsProvider } from "@/context/ColorsContext.jsx";
 import styles from "./uiTools.module.scss";
 import AddComponentModal from "../add-component/AddComponentModal";
+import DeleteIcon from "@/assets/component-svg/DeleteIcon";
 
 import { componentMetadata } from "@/config/componentRegistry.js";
 import { useLayoutManager } from "@/hooks/useLayoutManager.js";
@@ -8,6 +9,7 @@ import { breakpoints, cols, generateSafeLayouts } from "@/utils/layoutUtils";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { Responsive, WidthProvider } from "react-grid-layout";
+
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -26,14 +28,9 @@ const UITools = () => {
     hasLoadedLayout
   } = useLayoutManager();
 
-  console.log("Desde UITools:", { hasLoadedLayout, layouts, renderedComponents });
-
   if (!hasLoadedLayout) return <div>Cargando layout...</div>;
 
   const safeLayouts = generateSafeLayouts(layouts, renderedComponents);
-
-console.log("hasLoadedLayout:", hasLoadedLayout);
-console.log("layouts:", layouts);
 
   return (
     <ColorsProvider>
@@ -72,26 +69,13 @@ console.log("layouts:", layouts);
                   onMouseDown={(e) => e.stopPropagation()}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleRemove();
-                  }}
-                  style={{
-                    position: "absolute",
-                    top: 5,
-                    right: 5,
-                    zIndex: 10,
-                    background: "red",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "50%",
-                    width: 24,
-                    height: 24,
-                    cursor: "pointer",
-                    zIndex: 1000,
+                    handleRemove(key);
                   }}
                   aria-label={`Eliminar ${key}`}
                   title={`Eliminar ${key}`}
+                  className={`${styles.remove_button}`}
                 >
-                  ×
+                  <DeleteIcon className={styles["icon-remove"]}/>
                 </button>
               )}
               <Component />
@@ -100,9 +84,10 @@ console.log("layouts:", layouts);
         })}
       </ResponsiveGridLayout>
       <AddComponentModal
-        isOpen={openAddModal}
+        isOpen={showAddModal}
         onClose={closeAddModal}
         onAdd={addComponentAndCloseModal}
+        renderedComponents={renderedComponents}
       />
     </ColorsProvider>
   );

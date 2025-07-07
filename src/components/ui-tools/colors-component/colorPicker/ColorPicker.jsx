@@ -1,7 +1,7 @@
 import styles from "./colorPicker.module.scss";
 import { useState } from "react";
 
-import CopyIcon from "../../../../assets/component-svg/CopyIcon.jsx";
+import CopyIcon from "@/assets/component-svg/CopyIcon.jsx";
 import DeleteIcon from "@/assets/component-svg/DeleteIcon.jsx";
 
 function ColorPicker({ color: colorProp, id, onDelete, onUpdate }) {

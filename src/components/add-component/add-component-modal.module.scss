@@ -1,0 +1,6 @@
+.main_dialog{
+        backdrop-filter: blur(10px);
+    & .main_dialog_content{
+        background-color: rgb(from var(--bg-dark) r g b / 80%);
+    }
+}
