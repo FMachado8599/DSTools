@@ -10,7 +10,6 @@ import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { Responsive, WidthProvider } from "react-grid-layout";
 
-
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const UITools = () => {
@@ -25,7 +24,7 @@ const UITools = () => {
     openAddModal,
     closeAddModal,
     addComponentAndCloseModal,
-    hasLoadedLayout
+    hasLoadedLayout,
   } = useLayoutManager();
 
   if (!hasLoadedLayout) return <div>Cargando layout...</div>;
@@ -35,63 +34,59 @@ const UITools = () => {
   return (
     <ColorsProvider>
       <div>
-        <h1>Tools</h1>
-        <button onClick={openAddModal}>
-          Agregar componente
-        </button>
-        <button onClick={handleToggleEdit}>
-          {editMode ? "Salir del modo edición" : "Editar layout"}
-        </button>
-      </div>
-      <ResponsiveGridLayout
-        className={`${styles.main_grid_container} layout`}
-        layouts={safeLayouts}
-        onLayoutChange={handleLayoutChange}
-        breakpoints={breakpoints}
-        cols={cols}
-        rowHeight={100}
-        width={1200}
-        isDraggable={editMode}
-        isResizable={editMode}
-        useCSSTransforms={false} // opcional: mejora estabilidad
-      >
-        {renderedComponents.map((key, index) => {
-          const Component = componentMetadata[key]?.component;
-          if (!Component) return null;
+        <div>
+          <h1>Tools</h1>
+          <button onClick={openAddModal}>Agregar componente</button>
+          <button onClick={handleToggleEdit}>
+            {editMode ? "Salir del modo edición" : "Editar layout"}
+          </button>
+        </div>
+        <ResponsiveGridLayout
+          className={`${styles.main_grid_container} layout`}
+          layouts={safeLayouts}
+          onLayoutChange={handleLayoutChange}
+          breakpoints={breakpoints}
+          cols={cols}
+          rowHeight={100}
+          width={1200}
+          isDraggable={editMode}
+          isResizable={editMode}
+          useCSSTransforms={false} // opcional: mejora estabilidad
+        >
+          {renderedComponents.map((key, index) => {
+            const Component = componentMetadata[key]?.component;
+            if (!Component) return null;
 
-          return (
-            <div
-              key={key}
-              style={{ position: "relative" }}
-            >
-              {editMode && (
-                <button
-                  onMouseDown={(e) => e.stopPropagation()}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleRemove(key);
-                  }}
-                  aria-label={`Eliminar ${key}`}
-                  title={`Eliminar ${key}`}
-                  className={`${styles.remove_button}`}
-                >
-                  <DeleteIcon className={styles["icon-remove"]}/>
-                </button>
-              )}
-              <Component />
-            </div>
-          );
-        })}
-      </ResponsiveGridLayout>
-      <AddComponentModal
-        isOpen={showAddModal}
-        onClose={closeAddModal}
-        onAdd={addComponentAndCloseModal}
-        renderedComponents={renderedComponents}
-      />
+            return (
+              <div key={key} style={{ position: "relative" }}>
+                {editMode && (
+                  <button
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemove(key);
+                    }}
+                    aria-label={`Eliminar ${key}`}
+                    title={`Eliminar ${key}`}
+                    className={`${styles.remove_button}`}
+                  >
+                    <DeleteIcon className={styles["icon-remove"]} />
+                  </button>
+                )}
+                <Component />
+              </div>
+            );
+          })}
+        </ResponsiveGridLayout>
+        <AddComponentModal
+          isOpen={showAddModal}
+          onClose={closeAddModal}
+          onAdd={addComponentAndCloseModal}
+          renderedComponents={renderedComponents}
+        />
+      </div>
     </ColorsProvider>
   );
 };
 
 export default UITools;
-
