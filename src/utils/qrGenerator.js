@@ -1,18 +1,23 @@
-export default function generateQR(text, container) {
-  if (!container) return;
+import { useState } from "react";
+import { QRCode } from "qrcode.react";
 
-  container.innerHTML = "";
+const QrGenerator = () => {
+  const [text, setText] = useState("");
 
-  if (text.trim() === "") {
-    alert("Escribí algo papito");
-    return;
-  }
+  return (
+    <div>
+      <h1>🎉 Generador de Código QR</h1>
+      <input
+        type="text"
+        value={text}
+        placeholder="Escribir..."
+        onChange={(e) => setText(e.target.value)}
+      />
+      {text.trim() !== "" && (
+        <QRCode value={text} size={128} bgColor="#141e30" fgColor="#ffffff" />
+      )}
+    </div>
+  );
+};
 
-  new QRCode(container, {
-    text: text,
-    width: 100,
-    height: 100,
-    colorDark: "#ffffff",
-    colorLight: "#141e30",
-  });
-}
+export default QrGenerator;

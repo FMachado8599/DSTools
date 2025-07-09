@@ -1,27 +1,51 @@
-import { useRef, useState } from "react";
-import generateQR from "@/utils/qrGenerator.js";
+import { useState } from "react";
+import QRCode from "react-qr-code";
+import styles from "./qr-generator.module.scss";
 
 const QrGenerator = () => {
   const [text, setText] = useState("");
-  const qrCodeRef = useRef(null);
+  const [showQR, setShowQR] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleGenerate = () => {
-    if (qrCodeRef.current) {
-      generateQR(text, qrCodeRef.current);
+  const handleGenerate = async () => {
+    if (text.trim() === "") {
+      alert("Escribí algo papito");
+      return;
     }
+
+    setLoading(true);
+    setShowQR(false);
+
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // esperar 1s
+
+    setLoading(false);
+    setShowQR(true);
   };
 
   return (
-    <div>
-      <h1>🎉 Generador de Código QR</h1>
+    <div className={`${styles.component_container}`}>
+      <h2>Generate QR code</h2>
+      <div className={`${styles.qr_container}`}>
+        {loading && <p>Cargando QR...</p>}
+
+        {showQR && (
+          <div>
+            <QRCode
+              value={text}
+              bgColor="transparent"
+              fgColor="#ffffff"
+              size={128}
+            />
+          </div>
+        )}
+      </div>
       <input
         type="text"
         value={text}
         placeholder="Escribir..."
         onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={handleGenerate}>Generate</button>
-      <div ref={qrCodeRef}></div>
+      <button onClick={handleGenerate}>Generar</button>
     </div>
   );
 };
