@@ -11,6 +11,8 @@ export const useLayoutManager = () => {
 
     useEffect(() => {
     const savedLayouts = localStorage.getItem(STORAGE_KEYS.DASHBOARD_LAYOUT);
+    const savedComponents = localStorage.getItem(STORAGE_KEYS.RENDERED_COMPONENTS);
+
     if (savedLayouts) {
         try {
         setLayouts(JSON.parse(savedLayouts));
@@ -21,7 +23,17 @@ export const useLayoutManager = () => {
     } else {
         setLayouts(defaultLayouts);
     }
-    setHasLoadedLayout(true); // ✅ ¡esto tiene que estar afuera del if!
+
+    if (savedComponents) {
+        try {
+        setRenderedComponents(JSON.parse(savedComponents));
+        } catch (e) {
+        console.error("Error parsing rendered components:", e);
+        setRenderedComponents(["colors", "shades", "qr"]);
+        }
+    }
+
+    setHasLoadedLayout(true);
     }, []);
 
     const handleToggleEdit = () => {
@@ -30,6 +42,7 @@ export const useLayoutManager = () => {
 
         if (editMode && layouts) {
         localStorage.setItem(STORAGE_KEYS.DASHBOARD_LAYOUT, JSON.stringify(layouts));
+        localStorage.setItem(STORAGE_KEYS.RENDERED_COMPONENTS, JSON.stringify(renderedComponents)); 
         }
     };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import QRCode from "react-qr-code";
+import { QRCodeSVG } from "qrcode.react";
 import styles from "./qr-generator.module.scss";
 
 const QrGenerator = () => {
@@ -30,7 +30,7 @@ const QrGenerator = () => {
 
         {showQR && (
           <div>
-            <QRCode
+            <QRCodeSVG
               value={text}
               bgColor="transparent"
               fgColor="#ffffff"

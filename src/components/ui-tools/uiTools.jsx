@@ -51,7 +51,7 @@ const UITools = () => {
           width={1200}
           isDraggable={editMode}
           isResizable={editMode}
-          useCSSTransforms={false} // opcional: mejora estabilidad
+          useCSSTransforms={false}
         >
           {renderedComponents.map((key, index) => {
             const Component = componentMetadata[key]?.component;
